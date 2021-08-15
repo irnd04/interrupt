@@ -1,6 +1,5 @@
 package org.example;
 
-import ch.qos.logback.classic.Logger;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

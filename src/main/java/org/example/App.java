@@ -33,13 +33,15 @@ public class App
     public static void start() {
         pt.start();
         ct.start();
-        nt.start();
+        //nt.start();
     }
 
-    public static void main( String[] args ) throws InterruptedException {
+    public static void main( String[] args ) {
+        Runtime.getRuntime().addShutdownHook(new Thread(App::interrupt));
         start();
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
+
         interrupt();
     }
 }
