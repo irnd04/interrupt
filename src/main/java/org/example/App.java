@@ -19,18 +19,21 @@ public class App
     private static Consumer consumer = new Consumer(q);
     private static Thread pt = new Thread(producer);
     private static Thread ct = new Thread(consumer);
+    private static NoInterruptExceptionThread nt = new NoInterruptExceptionThread();
 
     public static void interrupt() {
         pt.interrupt();
         log.info("pt[{}].isInterrupted() {}", pt.getName(), pt.isInterrupted());
         ct.interrupt();
         log.info("ct[{}].isInterrupted() {}", ct.getName(), ct.isInterrupted());
-
+        nt.interrupt();
+        log.info("ct[{}].isInterrupted() {}", nt.getName(), ct.isInterrupted());
     }
 
     public static void start() {
         pt.start();
         ct.start();
+        nt.start();
     }
 
     public static void main( String[] args ) throws InterruptedException {
