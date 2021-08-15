@@ -1,9 +1,12 @@
 package org.example;
 
+import ch.qos.logback.classic.Logger;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.BlockingQueue;
 
+@Slf4j
 @RequiredArgsConstructor
 public class Consumer implements Runnable {
 
@@ -14,12 +17,14 @@ public class Consumer implements Runnable {
         while (!Thread.currentThread().isInterrupted()) {
             try {
                 Integer take = q.take();
-                System.out.println("consume : " + take);
+                log.info("consume : " + take);
             } catch (InterruptedException e) {
+                log.info("consumer interrupted : " + Thread.currentThread().isInterrupted());
                 Thread.currentThread().interrupt();
-                System.out.println("consumer interrupt.");
+                log.info("consumer interrupted : " + Thread.currentThread().isInterrupted());
+                log.info("consumer interrupt.");
             }
         }
-        System.out.println("consumer terminated.");
+        log.info("consumer terminated.");
     }
 }

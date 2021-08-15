@@ -1,5 +1,7 @@
 package org.example;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Scanner;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -8,6 +10,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  * Hello world!
  *
  */
+@Slf4j
 public class App 
 {
 
@@ -19,7 +22,10 @@ public class App
 
     public static void interrupt() {
         pt.interrupt();
+        log.info("pt[{}].isInterrupted() {}", pt.getName(), pt.isInterrupted());
         ct.interrupt();
+        log.info("ct[{}].isInterrupted() {}", ct.getName(), ct.isInterrupted());
+
     }
 
     public static void start() {

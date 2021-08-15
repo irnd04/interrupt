@@ -2,9 +2,13 @@ package org.example;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.BlockingQueue;
 
+@Slf4j
 @RequiredArgsConstructor
 public class Producer implements Runnable {
 
@@ -18,11 +22,13 @@ public class Producer implements Runnable {
                 Thread.sleep(1000);
                 q.put(++i);
             } catch (InterruptedException e) {
+                log.info("producer isInterrupt : " + Thread.currentThread().isInterrupted());
                 Thread.currentThread().interrupt();
-                System.out.println("producer interrupt.");
+                log.info("producer isInterrupt : " + Thread.currentThread().isInterrupted());
+                log.info("producer interrupt.");
             }
-            System.out.println("q.put() " + i);
+            log.info("q.put() " + i);
         }
-        System.out.println("producer terminated.");
+        log.info("producer terminated.");
     }
 }
